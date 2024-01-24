@@ -3,14 +3,14 @@ pipeline {
   stages {
     stage('information') {
       steps {
-        sh 'pack version'
-        sh 'pack report'
+        sh '/var/jenkins_home/workspace/buildpacks/pack version'
+        sh '/var/jenkins_home/workspace/buildpacks/pack report'
         sh 'env | sort'
       }
     }
     stage('build') {
       steps {
-        sh 'pack build darinpope/spring-boot-hello-world:${GIT_COMMIT:0:7} --path . --builder gcr.io/buildpacks/builder:v1'
+        sh '/var/jenkins_home/workspace/buildpacks/pack build darinpope/spring-boot-hello-world:${GIT_COMMIT:0:7} --path . --builder gcr.io/buildpacks/builder:v1'
       }
     }
   }
